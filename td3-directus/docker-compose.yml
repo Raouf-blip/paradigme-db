@@ -30,6 +30,7 @@ services:
       DB_PASSWORD: "directus"
       ADMIN_EMAIL: "admin@admin.com"
       ADMIN_PASSWORD: "admin"
+      GRAPHQL_ENABLED: "true"
     volumes:
       - uploads:/directus/uploads
 
