@@ -1,0 +1,41 @@
+les requêtes à copier dans le mongoshell:
+
+1. Liste des produits
+db.produits.find()
+
+2. Compter les produits
+db.produits.countDocuments()
+
+3. Produits triés par numéro décroissant
+db.produits.find().sort({ numero: -1 })
+
+4. Produit avec libellé "Margherita"
+db.produits.findOne({ libelle: "Margherita" })
+
+5. Produits de la catégorie "Boissons"
+db.produits.find({ categorie: "Boissons" })
+
+6. Liste des produits : catégorie, numéro, libelle
+db.produits.find({}, { categorie: 1, numero: 1, libelle: 1, _id: 0 })
+
+7. Idem + taille et tarif
+db.produits.find({}, { categorie: 1, numero: 1, libelle: 1, tailles: 1, tarifs: 1, _id: 0 })
+
+8. Produits avec tarif < 8.0 pour la taille normale
+db.produits.find({ "tarifs.normale": { $lt: 8.0 } })
+
+9. Produits avec tarif grande taille < 8.0
+db.produits.find({ "tarifs.grande": { $lt: 8.0 } })
+
+10. Insérer un nouveau produit
+db.produits.insertOne({
+    numero: 99,
+    libelle: "Pizza Test",
+    categorie: "Test",
+    description: "Pizza test pour TD",
+    tailles: ["normale", "grande"],
+    tarifs: { normale: 5.5, grande: 7.0 }
+})
+
+11. Recettes associées au produit 1
+db.recettes.find({ produit_id: 1 })
