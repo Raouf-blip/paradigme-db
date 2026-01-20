@@ -19,23 +19,26 @@ db.produits.find({ categorie: "Boissons" })
 db.produits.find({}, { categorie: 1, numero: 1, libelle: 1, _id: 0 })
 
 7. Idem + taille et tarif
-db.produits.find({}, { categorie: 1, numero: 1, libelle: 1, tailles: 1, tarifs: 1, _id: 0 })
+db.produits.find({}, {categorie: 1, numero: 1, libelle: 1, taille: 1, tarif: 1, _id: 0})
 
 8. Produits avec tarif < 8.0 pour la taille normale
-db.produits.find({ "tarifs.normale": { $lt: 8.0 } })
+db.produits.find({tarif: {$lt: 8.0}})
 
 9. Produits avec tarif grande taille < 8.0
-db.produits.find({ "tarifs.grande": { $lt: 8.0 } })
+db.produits.find({"taille.libelle": "grande", "taille.tarif": {$lt: 8.0}})
 
 10. Insérer un nouveau produit
 db.produits.insertOne({
-    numero: 99,
-    libelle: "Pizza Test",
-    categorie: "Test",
-    description: "Pizza test pour TD",
-    tailles: ["normale", "grande"],
-    tarifs: { normale: 5.5, grande: 7.0 }
+    numero: 100,
+    libelle: "Nouvelle Pizza",
+    categorie: "Pizzas",
+    description: "Une délicieuse nouvelle pizza",
+    image: "nouvelle.jpg",
+    taille: [
+        {libelle: "normale", tarif: 9.50},
+        {libelle: "grande", tarif: 12.50}
+    ]
 })
 
 11. Recettes associées au produit 1
-db.recettes.find({ produit_id: 1 })
+db.recettes.find({produit_id: 1})
