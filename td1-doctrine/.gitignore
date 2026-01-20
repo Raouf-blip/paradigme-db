@@ -21,3 +21,8 @@
 /node_modules/
 .env
 *.log
+
+/assets/
+/bin/
+/migrations/
+/translations/

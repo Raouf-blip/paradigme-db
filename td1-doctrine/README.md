@@ -1,0 +1,1 @@
+Les requêtes des exercices se trouvent dans src/Command
