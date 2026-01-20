@@ -13,7 +13,6 @@ use toubeelib\praticien\entity\MoyenPaiement;
 $entityManager = require_once __DIR__ . '/../config/bootstrap.php';
 
 echo "<h1>TP1 - Doctrine ORM - Réponses aux exercices</h1>";
-echo "<style>body { font-family: Arial; padding: 20px; } pre { background: #f5f5f5; padding: 10px; border-left: 3px solid #007bff; }</style>";
 
 // --- Exercice 1 : utilisation élémentaire ---
 echo "<h2>📚 Exercice 1 : Utilisation élémentaire</h2>";
@@ -235,23 +234,7 @@ foreach ($specialitesMedecine as $s) {
 }
 echo "</pre>";
 
-// 2.5 Praticiens ophtalmologie à Paris (DQL)
-echo "<h3>2.5 - Praticiens ophtalmologie à Paris (DQL)</h3>";
-$dql = "SELECT p FROM toubeelib\praticien\entity\Praticien p
-        JOIN p.specialite s
-        WHERE s.libelle = :specialite AND p.ville = :ville";
-$praticiensParis = $entityManager->createQuery($dql)
-    ->setParameter('specialite', 'ophtalmologie')
-    ->setParameter('ville', 'Paris')
-    ->getResult();
 
-echo "<pre>";
-echo "Résultats (" . count($praticiensParis) . "):\n";
-foreach ($praticiensParis as $p) {
-    echo "  • " . $p->getTitre() . " " . $p->getPrenom() . " " . $p->getNom() . "\n";
-    echo "    Email: " . $p->getEmail() . "\n";
-}
-echo "</pre>";
 
 // --- Exercice 3 ---
 echo "<hr><h2>📦 Exercice 3 : Repository et DQL</h2>";
